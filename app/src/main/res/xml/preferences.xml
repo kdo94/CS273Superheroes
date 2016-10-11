@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ListPreference
+        android:defaultValue="4"
+        android:title="@string/number_of_choices"
+        android:entries="@array/guesses_list"
+        android:entryValues="@array/guesses_list"
+        android:key="list_preference_1"
+        android:summary="@string/number_of_choices_description" />
+    <ListPreference
+        android:title="@string/quiz_type"
+        android:entries="@array/superhero_list_for_settings"
+        android:entryValues="@array/superhero_list"
+        android:key="list_preference_2"
+        android:summary="@string/quiz_type_description"
+        android:defaultValue="@string/default_quiz" />
+</PreferenceScreen>

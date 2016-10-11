@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">CS 273 Superheroes</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="number_of_choices">Number Of Choices</string>
+    <string name="number_of_choices_description">Display 2, 4, 6 or 8 guess buttons</string>
+    <string name="quiz_type">Quiz Type</string>
+    <string name="quiz_type_description">Choose superhero name, superpower, or one thing about them.</string>
+    <string name="guess_superhero">Guess the Superhero</string>
+    <string name="guess_superpower">Guess the Superpower</string>
+    <string name="guess_one_thing">Guess the one thing about this Superhero</string>
+    <string name="results">%1$d guesses, %2$.02f%% correct</string>
+    <string name="incorrect_answer">Incorrect!</string>
+    <string name="restarting_quiz">Quiz will restart with your new settings</string>
+    <string name="question">Question %1$d of %2$d</string>
+    <string name="reset_quiz">Reset Quiz</string>
+    <string name="image_description">Image of the current superhero in the quiz</string>
+    <string name="default_quiz">Superhero Name</string>
+    <string name="default_quiz_message">A quiz type must be selected. Setting Superhero name as the default region.</string>
+</resources>

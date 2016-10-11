@@ -1,0 +1,30 @@
+{
+  "Superheroes": [
+    {"Username":"rbarron11","Name":"Roman B","Superpower":"Ability to tell cats to go away","One Thing":"Does not like cats"},
+    {"Username":"gbyers01","Name":"Grant B","Superpower":"Retain all knowledge","One Thing":"Loves to wrench"},
+    {"Username":"jcabrera31","Name":"James C","Superpower":"Telekinesis","One Thing":"Loves paddling on water"},
+    {"Username":"kdo94","Name":"Kevin D","Superpower":"Shape-shifting","One Thing":"Really wants a kitten"},
+    {"Username":"bfazeli","Name":"Bijan F","Superpower":"Eat with no constraints","One Thing":"Has B.S. in Microbiology"},
+    {"Username":"kfrederick5","Name":"Keegan F","Superpower":"Technomancy","One Thing":"Loves organizing games"},
+    {"Username":"hho","Name":"Huy H","Superpower":"Ability to fly","One Thing":"Asks weird questions"},
+    {"Username":"nhoang53","Name":"Nguyen H","Superpower":"Working hard","One Thing":"Likes badminton"},
+    {"Username":"fjuarez6","Name":"Freddy J","Superpower":"Manipulation","One Thing":"Loves to travel"},
+    {"Username":"dkim127","Name":"Austin K","Superpower":"Control time","One Thing":"Likes history and coding"},
+    {"Username":"jkloppenburg1","Name":"Justin K","Superpower":"Breathe underwater","One Thing":"Wants to design games"},
+    {"Username":"wlee","Name":"Wonseop L","Superpower":"Ability to fly","One Thing":"Loves to be in nature"},
+    {"Username":"mmizukami","Name":"Mahiro M","Superpower":"Speed reading","One Thing":"Loves any kind of games"},
+    {"Username":"tmorrissey1","Name":"Travis M","Superpower":"Immortality","One Thing":"Great in bar fights"},
+    {"Username":"bnguyen336","Name":"Benjamin N","Superpower":"Understand all languages","One Thing":"Lives to play ping-pong"},
+    {"Username":"dnguyen1214","Name":"Duy N","Superpower":"Teleportation","One Thing":"Funny, foodie, traveler"},
+    {"Username":"snguyen171","Name":"Son N","Superpower":"Mimic other powers","One Thing":"Gaming nerd"},
+    {"Username":"vnguyen629","Name":"Vincent N","Superpower":"Photographic memory","One Thing":"Likes spam with banana sauce"},
+    {"Username":"vnguyen678","Name":"Vu N","Superpower":"Stop time when asleep","One Thing":"Enjoys playing games"},
+    {"Username":"dnovasky","Name":"Donald N","Superpower":"Fly like superman","One Thing":"Dislikes Apple"},
+    {"Username":"rorellana2","Name":"Romario O","Superpower":"Super-hack power","One Thing":"Loves long walks on beach"},
+    {"Username":"dpham147","Name":"Danny P","Superpower":"Warp things","One Thing":"Is a gamer"},
+    {"Username":"ischenck","Name":"Ian S","Superpower":"Live forever","One Thing":"Loves to backpack in wild"},
+    {"Username":"rsullivan11","Name":"Ryan S","Superpower":"Answers by inspiration","One Thing":"Dislikes IDEs"},
+    {"Username":"ltruong58","Name":"Long T","Superpower":"Build most popular app","One Thing":"Favorite sport is volleyball"},
+    {"Username":"mpaulding","Name":"Michael P","Superpower":"Super-caring teacher power","One Thing":"Complete ocean nut"}
+  ]
+}
