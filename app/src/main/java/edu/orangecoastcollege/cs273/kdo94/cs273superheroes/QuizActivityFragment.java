@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.os.Handler;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,7 +25,6 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.logging.Handler;
 
 import static android.R.attr.country;
 
@@ -151,8 +151,8 @@ public class QuizActivityFragment extends Fragment {
         // and try to use the InputStream
         try (InputStream stream = assets.open("/" + nextImage + ".png")){
             // Load the asset as a Drawable and display on the superheroImageView
-            Drawable flag = Drawable.createFromStream(stream, nextImage);
-            superheroImageView.setImageDrawable(superhero);
+            Drawable hero = Drawable.createFromStream(stream, nextImage);
+            superheroImageView.setImageDrawable(hero);
         }
         catch(IOException exception){
             Log.e(TAG, "Error loading " + nextImage, exception);
