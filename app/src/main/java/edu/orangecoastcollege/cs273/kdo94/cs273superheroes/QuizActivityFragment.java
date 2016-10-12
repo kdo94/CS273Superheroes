@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -17,7 +18,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.os.Handler;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,8 +25,7 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import static android.R.attr.country;
+import java.util.Set;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -40,6 +39,7 @@ public class QuizActivityFragment extends Fragment {
     private List<String>  fileNameList; // Superhero file names
     private List<String> quizSuperheroesList; // Superheroes in current quiz
     private String correctAnswer; // Correct Answer for the current superhero
+    private Set<String> quizType;
     private int totalGuesses; // Number of guesses made
     private int correctAnswers; //Number of correct guesses
     private int guessRows; // Number of rows displaying guess Buttons
@@ -95,7 +95,7 @@ public class QuizActivityFragment extends Fragment {
         // Get the number of guess buttons that should be displayed
         String choices =
                 sharedPreferences.getString(QuizActivity.CHOICES, null);
-        guessRows = Integer.parseInt(choices) / 2;
+        guessRows = 4 / 2;
 
         // Hide all guess button LinearLayouts
         for(LinearLayout layout : guessLinearLayout)
@@ -112,7 +112,16 @@ public class QuizActivityFragment extends Fragment {
         AssetManager assets = getActivity().getAssets();
         fileNameList.clear();
 
-        // try catch
+        // Add Superheroes to the fileNameList
+        try{
+            for (String type : quizType){
+                String[] paths = assets.list(type);
+            }
+        }
+
+        correctAnswers = 0;
+        totalGuesses = 0;
+        quizSuperheroesList.clear();
 
         int superheroCounter = 1;
         int numberOfSuperheroes = fileNameList.size();
@@ -149,7 +158,7 @@ public class QuizActivityFragment extends Fragment {
 
         // Get an InputStream to the asset representing the next superhero
         // and try to use the InputStream
-        try (InputStream stream = assets.open("/" + nextImage + ".png")){
+        try (InputStream stream = assets.open(nextImage + ".png")){
             // Load the asset as a Drawable and display on the superheroImageView
             Drawable hero = Drawable.createFromStream(stream, nextImage);
             superheroImageView.setImageDrawable(hero);
@@ -272,6 +281,11 @@ public class QuizActivityFragment extends Fragment {
                 guessRow.getChildAt(i).setEnabled(false);
             }
         }
+    }
+
+    public void updateQuizType(SharedPreferences sharedPreferences){
+
+
     }
 
 }

@@ -33,7 +33,7 @@ public class QuizActivity extends AppCompatActivity {
         // Register listener for SharedPreferences changes
         PreferenceManager.getDefaultSharedPreferences(this).
                 registerOnSharedPreferenceChangeListener(
-                        preferencesChangeListener);
+                        preferenceChangeListener);
 
         // Determine screen size
         int screenSize = getResources().getConfiguration().screenLayout &
@@ -100,15 +100,21 @@ public class QuizActivity extends AppCompatActivity {
                     QuizActivityFragment quizFragment = (QuizActivityFragment)
                             getSupportFragmentManager().findFragmentById(
                                     R.id.quizFragment);
-                    if (key.equals(CHOICES)){
+                    if (key.equals(CHOICES)) {
                         quizFragment.updateGuessRows(sharedPreferences);
                         quizFragment.resetQuiz();
                     }
+                    else if (key.equals(QUIZ_TYPE)){
+                        quizFragment.updateQuizType(sharedPreferences);
+                        quizFragment.resetQuiz();
+                    }
+                    else{
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        Toast.makeText(QuizActivity.this, R.string.default_quiz_message,
+                                Toast.LENGTH_SHORT).show();
+                    }
 
-                    Toast.makeText(QuizActivity.this, R.string.default_quiz_message,
-                            Toast.LENGTH_SHORT).show();
-
-                    // Change quiz type
+                    Toast.makeText(QuizActivity.this, R.string.restarting_quiz, Toast.LENGTH_SHORT).show();
                 }
-            }
+            };
 }
