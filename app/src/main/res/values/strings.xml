@@ -15,6 +15,6 @@
     <string name="question">Question %1$d of %2$d</string>
     <string name="reset_quiz">Reset Quiz</string>
     <string name="image_description">Image of the current superhero in the quiz</string>
-    <string name="default_quiz">Superhero Name</string>
+    <string name="default_quiz">Superpower</string>
     <string name="default_quiz_message">A quiz type must be selected. Setting Superhero name as the default region.</string>
 </resources>

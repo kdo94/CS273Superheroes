@@ -19,7 +19,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/questionNumberTextView"
         android:gravity="center"
-        tools:text="@string/question" />
+        tools:text="@string/question"
+        android:textSize="18sp" />
 
     <ImageView
         android:layout_width="match_parent"
@@ -36,28 +37,30 @@
         android:layout_height="wrap_content"
         android:id="@+id/guessSuperheroTextView"
         android:gravity="center"
-        tools:text="@string/guess_superhero" />
+        tools:text="@string/guess_superhero"
+        android:textSize="18sp" />
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/row1LinearLayout"
-        android:elevation="1dp">
+        android:id="@+id/row1LinearLayout">
 
         <Button
             android:text="Button"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/button"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            style="@style/Base.Widget.AppCompat.Button.Colored" />
 
         <Button
             android:text="Button"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/button2"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            style="@style/Base.Widget.AppCompat.Button.Colored" />
     </LinearLayout>
 
     <LinearLayout
@@ -69,16 +72,18 @@
         <Button
             android:text="Button"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/button4"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            style="@style/Base.Widget.AppCompat.Button.Colored" />
 
         <Button
             android:text="Button"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/button3"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            style="@style/Base.Widget.AppCompat.Button.Colored" />
     </LinearLayout>
 
     <TextView
@@ -86,5 +91,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/answerTextView"
-        android:gravity="center" />
+        android:gravity="center"
+        android:textSize="18sp" />
 </LinearLayout>

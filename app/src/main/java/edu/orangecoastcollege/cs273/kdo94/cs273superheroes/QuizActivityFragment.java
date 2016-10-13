@@ -29,6 +29,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
+import static edu.orangecoastcollege.cs273.kdo94.cs273superheroes.QuizActivity.QUIZ_TYPE;
+
 /**
  * A placeholder fragment containing a simple view.
  */
@@ -41,7 +43,7 @@ public class QuizActivityFragment extends Fragment {
     private List<String>  fileNameList; // Superhero file names
     private List<String> quizSuperheroesList; // Superheroes in current quiz
     private String correctAnswer; // Correct Answer for the current superhero
-    private Set<String> quizType;
+    private String quizType;
     private int totalGuesses; // Number of guesses made
     private int correctAnswers; //Number of correct guesses
     private SecureRandom random; // Used to randomize the quiz
@@ -100,7 +102,7 @@ public class QuizActivityFragment extends Fragment {
     }
 
     public void updateQuizType(SharedPreferences sharedPreferences){
-        quizType = sharedPreferences.getStringSet(QuizActivity.QUIZ_TYPE, null);
+        quizType = sharedPreferences.getString(QUIZ_TYPE, null);
     }
 
     public void resetQuiz(){
@@ -189,7 +191,7 @@ public class QuizActivityFragment extends Fragment {
 
                 // Get country name and set it as the newGuessButton's text
                 String filename = fileNameList.get((row * 2) + column);
-                newGuessButton.setText(getSuperheroName(filename));
+                newGuessButton.setText(changeButtons(filename));
             }
         }
 
@@ -197,7 +199,7 @@ public class QuizActivityFragment extends Fragment {
         int row = random.nextInt(2);
         int column = random.nextInt(2);
         LinearLayout randomRow = guessLinearLayout[row]; // get the row
-        String superheroName = getSuperheroName(correctAnswer);
+        String superheroName = changeButtons(correctAnswer);
         ((Button) randomRow.getChildAt(column)).setText(superheroName);
     }
 
@@ -206,7 +208,7 @@ public class QuizActivityFragment extends Fragment {
         public void onClick(View v) {
             Button guessButton = ((Button) v);
             String guess = guessButton.getText().toString();
-            String answer = getSuperheroName(correctAnswer);
+            String answer = changeButtons(correctAnswer);
             totalGuesses++; // Increment number of guesses the user had made
 
             if(guess.equals(answer)) { // if the guess is correct
@@ -274,7 +276,10 @@ public class QuizActivityFragment extends Fragment {
     };
 
     private String getSuperheroName(String name){
-        return name;
+        for (Superheroes hero : allSuperheroes)
+            if (name.equals(hero.getUsername()))
+                return hero.getName();
+        return "";
     }
 
     private void disableButtons(){
@@ -284,6 +289,24 @@ public class QuizActivityFragment extends Fragment {
                 guessRow.getChildAt(i).setEnabled(false);
             }
         }
+    }
+
+    private String changeButtons(String name){
+        for (Superheroes hero : allSuperheroes)
+            if (name.equals(hero.getUsername())){
+                switch (quizType){
+                    case "Superpower":
+                        guessSuperheroTextView.setText(R.string.guess_superpower);
+                        return hero.getSuperpower();
+                    case "One Thing":
+                        guessSuperheroTextView.setText(R.string.guess_one_thing);
+                        return hero.getOneThing();
+                    default:
+                        guessSuperheroTextView.setText(R.string.guess_superhero);
+                        return hero.getName();
+                }
+            }
+        return "";
     }
 
 }
