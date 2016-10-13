@@ -13,11 +13,4 @@
         <item>One Thing</item>
     </string-array>
 
-    <string-array name="guesses_list">
-        <item>2</item>
-        <item>4</item>
-        <item>6</item>
-        <item>8</item>
-    </string-array>
-
 </resources>

@@ -42,7 +42,6 @@ public class QuizActivityFragment extends Fragment {
     private Set<String> quizType;
     private int totalGuesses; // Number of guesses made
     private int correctAnswers; //Number of correct guesses
-    private int guessRows; // Number of rows displaying guess Buttons
     private SecureRandom random; // Used to randomize the quiz
     private Handler handler; // Used to delay loading next flag
 
@@ -69,11 +68,9 @@ public class QuizActivityFragment extends Fragment {
         // Get reference to GUI components
         questionNumberTextView = (TextView) view.findViewById(R.id.questionNumberTextView);
         superheroImageView = (ImageView) view.findViewById(R.id.superheroImageView);
-        guessLinearLayout = new LinearLayout[4];
+        guessLinearLayout = new LinearLayout[2];
         guessLinearLayout[0] = (LinearLayout) view.findViewById(R.id.row1LinearLayout);
         guessLinearLayout[1] = (LinearLayout) view.findViewById(R.id.row2LinearLayout);
-        guessLinearLayout[2] = (LinearLayout) view.findViewById(R.id.row3LinearLayout);
-        guessLinearLayout[3] = (LinearLayout) view.findViewById(R.id.row4LinearLayout);
         answerTextView = (TextView) view.findViewById(R.id.answerTextView);
         guessSuperheroTextView = (TextView) view.findViewById(R.id.guessSuperheroTextView);
 
@@ -91,20 +88,8 @@ public class QuizActivityFragment extends Fragment {
         return view;
     }
 
-    public void updateGuessRows(SharedPreferences sharedPreferences){
-        // Get the number of guess buttons that should be displayed
-        String choices =
-                sharedPreferences.getString(QuizActivity.CHOICES, null);
-        guessRows = 4 / 2;
-
-        // Hide all guess button LinearLayouts
-        for(LinearLayout layout : guessLinearLayout)
-            layout.setVisibility(View.GONE);
-
-        // Display appropriate guess button LinearLayouts
-        for(int row = 0; row < guessRows; row++){
-            guessLinearLayout[row].setVisibility(View.VISIBLE);
-        }
+    public void updateQuizType(SharedPreferences sharedPreferences){
+        quizType = sharedPreferences.getStringSet(QuizActivity.QUIZ_TYPE, null);
     }
 
     public void resetQuiz(){
@@ -116,7 +101,13 @@ public class QuizActivityFragment extends Fragment {
         try{
             for (String type : quizType){
                 String[] paths = assets.list(type);
+
+                for (String path : paths)
+                    fileNameList.add(path.replace(".png", ""));
             }
+        }
+        catch(IOException exception){
+            Log.e(TAG, "Error loading image file names", exception);
         }
 
         correctAnswers = 0;
@@ -158,7 +149,7 @@ public class QuizActivityFragment extends Fragment {
 
         // Get an InputStream to the asset representing the next superhero
         // and try to use the InputStream
-        try (InputStream stream = assets.open(nextImage + ".png")){
+        try (InputStream stream = assets.open("/" + nextImage + ".png")){
             // Load the asset as a Drawable and display on the superheroImageView
             Drawable hero = Drawable.createFromStream(stream, nextImage);
             superheroImageView.setImageDrawable(hero);
@@ -173,8 +164,8 @@ public class QuizActivityFragment extends Fragment {
         int correct = fileNameList.indexOf(correctAnswer);
         fileNameList.add(fileNameList.remove(correct));
 
-        // Add, 2, 4, 6, or 8 guess Buttons based on the value fo guessRows
-        for(int row = 0; row < guessRows; row++){
+        // Add, 2, 4, 6, or 8 guess Buttons based on the value of guessRows
+        for(int row = 0; row < 2; row++){
             // Place Buttons in currentTableRow
             for(int column = 0;
                     column < guessLinearLayout[row].getChildCount();
@@ -191,7 +182,7 @@ public class QuizActivityFragment extends Fragment {
         }
 
         // Randomly replace one Button with the correct answer
-        int row = random.nextInt(guessRows);
+        int row = random.nextInt(2);
         int column = random.nextInt(2);
         LinearLayout randomRow = guessLinearLayout[row]; // get the row
         String superheroName = getSuperheroName(correctAnswer);
@@ -275,17 +266,12 @@ public class QuizActivityFragment extends Fragment {
     }
 
     private void disableButtons(){
-        for(int row = 0; row < guessRows;row++){
+        for(int row = 0; row < 2;row++){
             LinearLayout guessRow = guessLinearLayout[row];
             for(int i = 0; i < guessRow.getChildCount(); i++){
                 guessRow.getChildAt(i).setEnabled(false);
             }
         }
-    }
-
-    public void updateQuizType(SharedPreferences sharedPreferences){
-
-
     }
 
 }
