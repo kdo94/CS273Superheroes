@@ -7,5 +7,7 @@
         android:entryValues="@array/superhero_list"
         android:key="pref_quizType"
         android:summary="@string/quiz_type_description"
-        android:defaultValue="@array/superhero_list" />
+        android:defaultValue="@array/superhero_list"
+        android:persistent="true"/>
+
 </PreferenceScreen>

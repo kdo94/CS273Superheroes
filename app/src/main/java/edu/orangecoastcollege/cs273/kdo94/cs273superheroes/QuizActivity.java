@@ -1,6 +1,5 @@
 package edu.orangecoastcollege.cs273.kdo94.cs273superheroes;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -9,13 +8,10 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Set;
 
 public class QuizActivity extends AppCompatActivity {
@@ -24,8 +20,6 @@ public class QuizActivity extends AppCompatActivity {
 
     private boolean phoneDevice = true; // Use to force portrait mode
     private boolean preferencesChanged = true;
-    private ArrayList<Superheroes> allSuperheroes;
-    private Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,14 +49,6 @@ public class QuizActivity extends AppCompatActivity {
         if(phoneDevice)
             setRequestedOrientation(
                     ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
-        try{
-            allSuperheroes = JSONLoader.loadJSONFromAsset(context);
-        }
-        catch(IOException ex){
-            Log.e("Superhero", "Error loading JSON data");
-        }
-
 
     }
 

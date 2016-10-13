@@ -121,7 +121,7 @@ public class QuizActivityFragment extends Fragment {
 //            Log.e(TAG, "Error loading image file names", exception);
 //        }
         for (Superheroes hero : allSuperheroes)
-        fileNameList.add(hero.getUsername());
+            fileNameList.add(hero.getUsername());
         correctAnswers = 0;
         totalGuesses = 0;
         quizSuperheroesList.clear();
