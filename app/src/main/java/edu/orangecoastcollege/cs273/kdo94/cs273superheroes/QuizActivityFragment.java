@@ -2,6 +2,7 @@ package edu.orangecoastcollege.cs273.kdo94.cs273superheroes;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.ContentLoadingProgressBar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,6 +52,7 @@ public class QuizActivityFragment extends Fragment {
     private LinearLayout[] guessLinearLayout; // Rows of answer Buttons
     private TextView answerTextView; // Displays correct answer
     private TextView guessSuperheroTextView; // Displays the correct question according to the quiz type
+    private ArrayList<Superheroes> allSuperheroes;
 
     public QuizActivityFragment() {
     }
@@ -85,6 +88,14 @@ public class QuizActivityFragment extends Fragment {
         // Set questionNumberTextView's Text
         questionNumberTextView.setText(
                 getString(R.string.question, 1, SUPERHEROES_IN_QUIZ));
+
+        try{
+            allSuperheroes = JSONLoader.loadJSONFromAsset(getContext());
+        }
+        catch(IOException ex){
+            Log.e("Superhero", "Error loading JSON data");
+        }
+
         return view;
     }
 
@@ -98,18 +109,19 @@ public class QuizActivityFragment extends Fragment {
         fileNameList.clear();
 
         // Add Superheroes to the fileNameList
-        try{
-            for (String type : quizType){
-                String[] paths = assets.list(type);
-
-                for (String path : paths)
-                    fileNameList.add(path.replace(".png", ""));
-            }
-        }
-        catch(IOException exception){
-            Log.e(TAG, "Error loading image file names", exception);
-        }
-
+//        try{
+//            for (String type : quizType){
+//                String[] paths = assets.list(type);
+//
+//                for (String path : paths)
+//                    fileNameList.add(path.replace(".png", ""));
+//            }
+//        }
+//        catch(IOException exception){
+//            Log.e(TAG, "Error loading image file names", exception);
+//        }
+        for (Superheroes hero : allSuperheroes)
+        fileNameList.add(hero.getUsername());
         correctAnswers = 0;
         totalGuesses = 0;
         quizSuperheroesList.clear();
@@ -149,7 +161,7 @@ public class QuizActivityFragment extends Fragment {
 
         // Get an InputStream to the asset representing the next superhero
         // and try to use the InputStream
-        try (InputStream stream = assets.open("/" + nextImage + ".png")){
+        try (InputStream stream = assets.open(nextImage + ".png")){
             // Load the asset as a Drawable and display on the superheroImageView
             Drawable hero = Drawable.createFromStream(stream, nextImage);
             superheroImageView.setImageDrawable(hero);
